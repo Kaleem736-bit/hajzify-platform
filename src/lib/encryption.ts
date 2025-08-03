@@ -1,10 +1,7 @@
-import CryptoJS from 'crypto-js';
+// src/lib/encryption.ts
+import * as CryptoJS from 'crypto-js'; // تغيير طريقة الاستيراد
 
-const SECRET_KEY = process.env.ENCRYPTION_KEY!;
-
-if (!SECRET_KEY) {
-  throw new Error('ENCRYPTION_KEY environment variable is not set');
-}
+const SECRET_KEY = process.env.ENCRYPTION_KEY || 'default-secret-key'; // إضافة قيمة افتراضية
 
 export function encrypt(text: string): string {
   return CryptoJS.AES.encrypt(text, SECRET_KEY).toString();
