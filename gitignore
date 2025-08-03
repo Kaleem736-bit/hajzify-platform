@@ -1,0 +1,15 @@
+# البيئات
+.env
+.env.local
+node_modules/
+
+# قاعدة البيانات
+*.db
+*.sqlite
+
+# Next.js
+.next/
+out/
+
+# أنظمة التشغيل
+.DS_Store
