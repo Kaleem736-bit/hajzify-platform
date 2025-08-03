@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  name             String
+  email            String    @unique
+  password         String
+  desk360AccountId String?
+  desk360ApiKey    String?
+  desk360Phone     String?
+  isActive         Boolean   @default(true)
+  appointments     Appointment[]
+  createdAt        DateTime  @default(now())
+}
+
+model Appointment {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  status      String    @default("pending")
+  createdAt   DateTime  @default(now())
+}
